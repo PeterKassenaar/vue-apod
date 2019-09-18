@@ -1,29 +1,49 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+    <v-app>
+        <v-app-bar app>
+            <v-toolbar-title class="headline text-uppercase">
+                <v-btn to="/">
+                    Vue - Astronomy Picture of the Day
+                </v-btn>
+                <!--                <v-date-picker v-model="date" @input="getPicture($event)"></v-date-picker>-->
+                <v-btn @click="clearPictures">
+                    Clear
+                </v-btn>
+
+            </v-toolbar-title>
+        </v-app-bar>
+
+        <v-content>
+            <router-view/>
+        </v-content>
+
+        <v-footer app>
+            <v-col class="text-center">
+                Created by <a href="https://www.kassenaar.com" target="_blank">Peter Kassenaar</a>,
+                data from the <a href="https://api.nasa.gov/api.html#apod" target="_blank">NASA APOD API</a>.
+            </v-col>
+        </v-footer>
+    </v-app>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>
+<script>
+    export default {
+        name: 'App',
+        data() {
+            return {
+
+            }
+        },
+        methods: {
+            clearPictures() {
+                // CLear the selection, then get latest picture
+                this.$store.dispatch('clearPictures');
+                this.$store.dispatch('getPicture');
+            },
+        },
+
+        created() {
+            this.$vuetify.theme.dark = true;
+        },
+    };
+</script>
