@@ -6,7 +6,7 @@
                 ref="menu"
                 v-model="menu"
                 :close-on-content-click="false"
-                :return-value.sync="date"
+                :return-value="date"
                 transition="scale-transition"
                 offset-y
                 min-width="290px">

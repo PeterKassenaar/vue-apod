@@ -7,6 +7,9 @@
                 <v-btn icon to="/">
                     <v-icon>mdi-home</v-icon>
                 </v-btn>
+                <v-btn icon to="/about">
+                    <v-icon>mdi-information</v-icon>
+                </v-btn>
                 Vue - Astronomy Picture of the Day
                 <v-btn @click="clearPictures">
                     Clear
