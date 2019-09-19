@@ -56,7 +56,8 @@
         },
         // Get initial theme setup
         created() {
-            this.$vuetify.theme.dark = !!this.themeText.includes('light');
+            this.$store.dispatch('getTheme');
+            this.$vuetify.theme.dark = this.themeText.includes('light');
         },
     };
 </script>

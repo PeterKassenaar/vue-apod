@@ -92,9 +92,20 @@ export default new Vuex.Store({
             }
             // 5. Check if a specific date is requested, add it to the url
             globals.url = globals.API_URL;
-            // 6. Perform HTTP-request if a specific date is requested
-            // TODO: check for doubles (i.e. see if the date is already in the array)
+
+            // 5a. Check for doubles (i.e. see if the date is already in the array)
+            let notInArray = true;
+            let pictureInArrayIndex = 0;
             if (date) {
+                localStoragePictures.forEach((picture, idx) => {
+                    if (picture.date === date) {
+                        notInArray = false;
+                        pictureInArrayIndex = idx;
+                    }
+                })
+            }
+            // 6. Perform HTTP-request if a specific date is requested
+            if (date && notInArray) {
                 globals.url = `${globals.API_URL}&date=${date}`;
                 axios.get(globals.url)
                     .then(result => {
@@ -129,7 +140,7 @@ export default new Vuex.Store({
                 // 7. No specific date requested, commit current array
                 context.commit('SET_LOADING_STATUS', false);
                 context.commit('SET_PICTURES', localStoragePictures);
-                context.commit('SET_CURRENT_PICTURE', localStoragePictures[0]);
+                context.commit('SET_CURRENT_PICTURE', localStoragePictures[pictureInArrayIndex]);
             }
         },
         // Set the current picture, based on requested date
