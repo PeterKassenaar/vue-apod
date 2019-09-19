@@ -19,17 +19,19 @@
                         v-on="on"
                 ></v-text-field>
             </template>
-            <v-date-picker v-model="date" no-title scrollable>
+            <v-date-picker
+                    v-model="date"
+                    min="1995-06-21"
+                    :max="maxDate"
+                    scrollable>
                 <div class="flex-grow-1"></div>
                 <v-btn text color="primary" @click="menu = false">Cancel</v-btn>
                 <v-btn text color="primary" @click="getPicture(date)">OK</v-btn>
             </v-date-picker>
-
         </v-menu>
-
-
+        <!--        Row with cards, containing all pictures, responsive layout -->
         <v-row>
-            <v-col cols="4" v-for="(picture, index) of pictures" :key="index">
+            <v-col md="4" xs="12" v-for="(picture, index) of pictures" :key="index">
                 <Card :picture="picture"></Card>
             </v-col>
         </v-row>
@@ -37,8 +39,6 @@
 </template>
 
 <script>
-
-
     import Card from "../components/Card";
 
     export default {
@@ -46,10 +46,11 @@
         data() {
             return {
                 date: new Date().toISOString().substr(0, 10),
+                maxDate: new Date().toISOString().substr(0, 10),
                 menu: false,
             }
         },
-        methods:{
+        methods: {
             getPicture(date) {
                 console.log('Get new picture for::', date);
                 this.menu = false;

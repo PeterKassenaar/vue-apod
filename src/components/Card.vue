@@ -15,7 +15,7 @@
             </v-card-text>
 
             <v-card-actions>
-                <v-btn color="indigo" width="100%" :to="`/detail/${picture.date}`">Learn more</v-btn>
+                <v-btn width="100%" :to="`/detail/${picture.date}`">Learn more</v-btn>
             </v-card-actions>
         </v-card>
         <!--    Empty Card-->

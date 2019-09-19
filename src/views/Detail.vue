@@ -2,9 +2,7 @@
     <v-container>
         <v-row>
             <v-col cols="12">
-
-
-                <v-card height="100%">
+                <v-card height="100%" v-if="picture">
                     <v-img v-if="picture.url"
                            class="text--white"
                            :src="picture.url">
@@ -16,7 +14,7 @@
                         </p>
                         <p>
                             <v-btn to="/">Home</v-btn>
-                            <v-btn :href="picture.hdurl">Get HD image</v-btn>
+                            <v-btn v-if="picture.hdurl" :href="picture.hdurl">Get HD image</v-btn>
                         </p>
                     </v-card-text>
                 </v-card>
@@ -26,10 +24,20 @@
 </template>
 <script>
     export default {
+        //
         created() {
             // fetch the requested date
             this.date = this.$route.params.date;
-            this.picture = this.$store.getters.getPicture(this.date);
+            if (!this.$store.state.populated) {
+                // store is not populated yet, first fill it.
+                this.$store.dispatch('getPicture', this.date);
+            }
+            this.$store.dispatch('setPicture', this.date);
+        },
+        computed:{
+            picture(){
+                return  this.$store.state.currentPicture;
+            }
         }
     }
 </script>
