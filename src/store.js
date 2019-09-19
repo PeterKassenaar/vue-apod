@@ -24,7 +24,7 @@ export default new Vuex.Store({
         currentPicture: '',
         pictures: [],
         errors: [],
-        themeText: globals.themeTexts.light
+        themeText: globals.themeTexts.dark
     },
     //***********
     // Mutations
