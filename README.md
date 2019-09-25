@@ -13,7 +13,7 @@ I created this project for learning purposes and for fun. It uses:
 
 ## Roadmap
 - <strike>Jump directly to a specific date and load that picture in the array if it's not there yet.</strike>
-- Check if a requested date is already in the list of pictures, so no doubles are permitted.
+- <strike>Check if a requested date is already in the list of pictures, so no doubles are permitted.</strike>
 - Remove a specific picture from the array.
 - Share specific APOD on social media
 - Media Type can be 'video'. Implement a YouTube video player.
